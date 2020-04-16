@@ -54,3 +54,7 @@ BROKER_URL = env('CELERY_BROKER_URL', REDIS_URL)
 
 SECRET_KEY = env('SECRET_KEY', '')
 PUBLISH_ASSOCIATED_ITEMS = True
+
+INSTALLED_APPS = (
+    'ewt.ingest.cna',
+)
