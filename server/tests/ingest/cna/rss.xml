@@ -88,6 +88,7 @@
 			<media:content url="https://www.catholicnewsagency.com/images/pierre_at_2019_mass_for_life.jpeg" fileSize="48479" type="image/jpeg" height="600" width="900" medium="image" isDefault="true">
 				<media:title>Pierre At 2019 Mass For Life</media:title>
 				<media:description>Archbishop Christophe Pierre, apostolic nuncio to the United States, was the celebrant at the 2019 Mass for Life in Washington D.C. on Jan. 18, 2019. Credit: Christine Rousselle/CNA</media:description>
+				<media:credit>Test</media:credit>
 			</media:content>			
 		</item>
 		<item>
@@ -148,6 +149,7 @@
 			<media:content url="https://www.catholicnewsagency.com/images/Pope_Francis_offers_Mass_on_Easter_Thursday_April_16_2020_Credit_Vatican_Media.jpg" fileSize="203780" type="image/jpeg" height="600" width="900" medium="image" isDefault="true">
 				<media:title>Pope Francis Offers Mass On Easter Thursday April 16 2020 Credit Vatican Media</media:title>
 				<media:description>Pope Francis offers Mass on Easter Thursday April 16, 2020. Credit: Vatican Media.</media:description>
+				<media:credit>Mita Stock Images / Shutterstock.</media:credit>
 			</media:content>			
 		</item>
 		<item>

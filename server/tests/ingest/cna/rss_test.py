@@ -14,11 +14,15 @@ with open(os.path.join(os.path.dirname(__file__), 'rss.xml')) as f:
 
 class CNA_RSSTestCase(unittest.TestCase):
 
-    def test_parse_media(self):
+    def get_item(self, index=0):
         data = feedparser.parse(xml)
         service = CNAFeedingService()
         service.tree = etree.fromstring(xml.encode())
-        item = service._create_item(data.entries[0])
+        item = service._create_item(data.entries[index])
+        return item
+
+    def test_parse_media(self):
+        item = self.get_item()
 
         self.assertIsNone(item.get('abstract'))
         self.assertIn('<p><em>Archbishop', item['body_html'])
@@ -30,10 +34,15 @@ class CNA_RSSTestCase(unittest.TestCase):
         self.assertEqual('tag:www.catholicnewsagency.com:images:pierre_at_2019_mass_for_life.jpeg', featured['guid'])
         self.assertIn('Credit: Christine Rousselle/CNA', featured['description_text'])
         self.assertEqual('Pierre At 2019 Mass For Life', featured['headline'])
+        self.assertEqual('Test', featured['creditline'])
         self.assertEqual(item['versioncreated'], featured['versioncreated'])
         self.assertEqual(item['firstcreated'], featured['firstcreated'])
         rend = featured['renditions']['baseImage']
         self.assertIn('mass_for_life.jpeg', rend['href'])
+
+    def test_ignore_shutterstock(self):
+        item = self.get_item(1)
+        self.assertIsNone(item.get('associations'))
 
     def test_fix_html(self):
         service = CNAFeedingService()

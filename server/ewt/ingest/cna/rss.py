@@ -10,6 +10,11 @@ NSMAP = {
     'media': 'http://search.yahoo.com/mrss/',
 }
 
+MEDIA_BLACKLIST = (
+    'Getty',
+    'Shutterstock',
+)
+
 
 class CNAFeedingService(RSSFeedingService):
     NAME = 'cna rss'
@@ -39,31 +44,39 @@ class CNAFeedingService(RSSFeedingService):
         content = getattr(data, 'content', None)
         xml_item = self._get_xml_item(data)
         if media and content:
-            featured = media[0]
-            try:
-                media_title = xml_item.find('media:content', NSMAP).find('media:title', NSMAP).text
-            except AttributeError:
-                media_title = ''
-            rendition = {
-                'href': featured['url'],
-                'width': int(featured['width']),
-                'height': int(featured['height']),
-                'mimetype': featured['type'],
-            }
-            item['associations'] = {
-                'featuremedia': {
-                    'type': 'picture',
-                    'guid': generate_tag_from_url(featured['url']),
-                    'headline': media_title,
-                    'description_text': content[0]['value'],
-                    'firstcreated': item['versioncreated'],
-                    'versioncreated': item['versioncreated'],
-                    'renditions': {
-                        'baseImage': rendition.copy(),
-                        'viewImage': rendition.copy(),
+            for featured in media:
+                try:
+                    media_credit = xml_item.find('media:content', NSMAP).find('media:credit', NSMAP).text
+                except AttributeError:
+                    media_credit = None
+                if media_credit and any([provider in media_credit for provider in MEDIA_BLACKLIST]):
+                    continue
+                try:
+                    media_title = xml_item.find('media:content', NSMAP).find('media:title', NSMAP).text
+                except AttributeError:
+                    media_title = ''
+                rendition = {
+                    'href': featured['url'],
+                    'width': int(featured['width']),
+                    'height': int(featured['height']),
+                    'mimetype': featured['type'],
+                }
+                item['associations'] = {
+                    'featuremedia': {
+                        'type': 'picture',
+                        'guid': generate_tag_from_url(featured['url']),
+                        'headline': media_title,
+                        'creditline': media_credit or '',
+                        'description_text': content[0]['value'],
+                        'firstcreated': item['versioncreated'],
+                        'versioncreated': item['versioncreated'],
+                        'renditions': {
+                            'baseImage': rendition.copy(),
+                            'viewImage': rendition.copy(),
+                        },
                     },
-                },
-            }
+                }
+                break  # just need one featured image
         return item
 
     def _fix_text(self, text):
