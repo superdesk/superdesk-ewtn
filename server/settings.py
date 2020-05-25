@@ -60,32 +60,20 @@ SCHEMA = {
     'picture': {
         'headline': {'required': False},
         'description_text': {'required': True},
-        'credit': {'required': False},
-        'hdln-keywords': {'required': False},
-        'city': {'required': False},
-        'country': {'required': False},
-        'sign_off': {'required': False},
+        'byline': {'required': False},
+        'sign_off': {'required': False}
     },
     'video': {
-        'slugline': {'required': False},
         'headline': {'required': False},
         'description_text': {'required': True},
-        'media_type': {'required': False},
-        'credit': {'required': False},
-        'hdln-keywords': {'required': False},
-        'city': {'required': False},
-        'country': {'required': False},
-        'sign_off': {'required': False},
+        'byline': {'required': False},
+        'sign_off': {'required': False}
     },
     'graphic': {
         'headline': {'required': False},
         'description_text': {'required': True},
-        'credit': {'required': False},
-        'keywords': {'required': False},
-        'city': {'required': False},
-        'country': {'required': False},
-        'sign_off': {'required': False},
-        'bcoverage': {'required': False},
+        'byline': {'required': False},
+        'sign_off': {'required': False}
     },
 }
 
@@ -95,48 +83,25 @@ EDITOR = {
     'picture': {
         'headline': {'order': 1, 'sdWidth': 'full'},
         'description_text': {'order': 2, 'sdWidth': 'full', 'textarea': True},
-        'credit': {'order': 3, 'sdWidth': 'full'},
-        'hdln-keywords': {'order': 4, 'sdWidth': 'full'},
-        'city': {'order': 5, 'sdWidth': 'full'},
-        'country': {'order': 6, 'sdWidth': 'full'},
-        'sign_off': {'order': 7, 'sdWidth': 'half'},
-        'byline': {'displayOnMediaEditor': False},
-        'copyrightnotice': {'displayOnMediaEditor': False},
-        'source': {'displayOnMediaEditor': False},
-        'date': {'displayOnMediaEditor': False},
-        'time': {'displayOnMediaEditor': False},
-        'dimensions': {'displayOnMediaEditor': False},
-        'unique_id': {'displayOnMediaEditor': False},
+        'byline': {'order': 3, 'sdWidth': 'full'},
+        'sign_off': {'displayOnMediaEditor': False},
+        'archive_description': {'displayOnMediaEditor': False}
     },
     'video': {
         'slugline': {'order': 1, 'sdWidth': 'full'},
         'headline': {'order': 2, 'sdWidth': 'full'},
         'description_text': {'order': 3, 'sdWidth': 'full', 'textarea': True},
         'media_type': {'order': 4, 'sdWidth': 'full'},
-        'credit': {'order': 5, 'sdWidth': 'full'},
-        'hdln-keywords': {'order': 6, 'sdWidth': 'full'},
-        'city': {'order': 7, 'sdWidth': 'full'},
-        'country': {'order': 8, 'sdWidth': 'full'},
-        'sign_off': {'order': 9, 'sdWidth': 'half'},
-        'byline': {'displayOnMediaEditor': False},
-        'copyrightnotice': {'displayOnMediaEditor': False},
-        'source': {'displayOnMediaEditor': False},
-        'date': {'displayOnMediaEditor': False},
-        'time': {'displayOnMediaEditor': False},
-        'duration': {'displayOnMediaEditor': False},
-        'unique_id': {'displayOnMediaEditor': False}
+        'byline': {'order': 5, 'sdWidth': 'full'},
+        'sign_off': {'displayOnMediaEditor': False},
+        'archive_description': {'displayOnMediaEditor': False}
     },
     'graphic': {
         'headline': {'order': 1, 'sdWidth': 'full'},
         'description_text': {'order': 2, 'sdWidth': 'full', 'textarea': True},
-        'credit': {'order': 3, 'sdWidth': 'full'},
-        'keywords': {'order': 4, 'sdWidth': 'full'},
-        'city': {'order': 5, 'sdWidth': 'full'},
-        'country': {'order': 6, 'sdWidth': 'full'},
-        'sign_off': {'order': 7, 'sdWidth': 'half'},
-        'byline': {'displayOnMediaEditor': False},
-        'copyrightnotice': {'displayOnMediaEditor': False},
-        'bcoverage': {'displayOnMediaEditor': False},
+        'byline': {'order': 3, 'sdWidth': 'full'},
+        'sign_off': {'displayOnMediaEditor': False},
+        'archive_description': {'displayOnMediaEditor': False}
     },
 }
 
@@ -146,3 +111,7 @@ EDITOR['audio'] = EDITOR['video']
 INSTALLED_APPS = (
     'ewt.ingest.cna',
 )
+
+GEONAMES_USERNAME = env('GEONAMESUSERNAME')
+GEONAMES_FEATURE_CLASSES = ['A', 'P']
+
