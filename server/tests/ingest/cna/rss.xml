@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://dublincore.org/documents/dcmi-namespace/">
 	<channel>
 		<title>CNA Daily News</title>
 		<link>https://www.catholicnewsagency.com/</link>
@@ -85,6 +85,7 @@
 <p>&nbsp;</p>]]></description>
 			<category>US</category>
 			<pubDate>Thu, 16 Apr 2020 05:00:00 -0600</pubDate>
+			<dc:creator>CNA</dc:creator>
 			<media:content url="https://www.catholicnewsagency.com/images/pierre_at_2019_mass_for_life.jpeg" fileSize="48479" type="image/jpeg" height="600" width="900" medium="image" isDefault="true">
 				<media:title>Pierre At 2019 Mass For Life</media:title>
 				<media:description>Archbishop Christophe Pierre, apostolic nuncio to the United States, was the celebrant at the 2019 Mass for Life in Washington D.C. on Jan. 18, 2019. Credit: Christine Rousselle/CNA</media:description>
