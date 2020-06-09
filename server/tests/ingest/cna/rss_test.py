@@ -26,6 +26,7 @@ class CNA_RSSTestCase(unittest.TestCase):
 
         self.assertIsNone(item.get('abstract'))
         self.assertIn('<p><em>Archbishop', item['body_html'])
+        self.assertEqual('CNA', item['byline'])
 
         self.assertEqual(datetime(2020, 4, 16, 11, 0, 0), item['versioncreated'])
         self.assertEqual(item['versioncreated'], item['firstcreated'])
