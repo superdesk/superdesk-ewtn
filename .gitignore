@@ -39,6 +39,7 @@ include/
 .vagrant/
 /client/.tern-project
 /server/.project
+/server/.python-version
 /server/.pydevproject
 /server/.settings/org.eclipse.core.resources.prefs
 /results/

@@ -7,10 +7,12 @@
 module.exports = function(grunt) {
     return {
         apps: [
-            'superdesk-publisher'
+            'superdesk-publisher',
+            'ewtn'
         ],
         importApps: [
-            'superdesk-publisher'
+            'superdesk-publisher',
+            '../ewtn'
         ],
         defaultRoute: '/workspace/personal',
         validatorMediaMetadata: {
@@ -63,6 +65,10 @@ module.exports = function(grunt) {
         },
         workspace: {
             analytics: true
+        },
+
+        item_profile: {
+            change_profile: 1
         },
         
         raven: {
