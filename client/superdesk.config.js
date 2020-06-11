@@ -66,6 +66,10 @@ module.exports = function(grunt) {
         workspace: {
             analytics: true
         },
+
+        item_profile: {
+            change_profile: 1
+        },
         
         raven: {
             dsn: process.env.SUPERDESK_RAVEN_DSN || ''
