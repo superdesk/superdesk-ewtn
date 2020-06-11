@@ -7,10 +7,12 @@
 module.exports = function(grunt) {
     return {
         apps: [
-            'superdesk-publisher'
+            'superdesk-publisher',
+            'ewtn'
         ],
         importApps: [
-            'superdesk-publisher'
+            'superdesk-publisher',
+            '../ewtn'
         ],
         defaultRoute: '/workspace/personal',
         validatorMediaMetadata: {
