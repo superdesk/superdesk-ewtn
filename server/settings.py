@@ -53,7 +53,12 @@ if env('REDIS_PORT'):
 BROKER_URL = env('CELERY_BROKER_URL', REDIS_URL)
 
 SECRET_KEY = env('SECRET_KEY', '')
+
+# publishing associations with the main item (images etc.)
 PUBLISH_ASSOCIATED_ITEMS = True
+
+# storing published keywords in a CV
+KEYWORDS_ADD_MISSING_ON_PUBLISH = True
 
 # schema for images, video, audio
 SCHEMA = {
