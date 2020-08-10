@@ -64,7 +64,8 @@ KEYWORDS_ADD_MISSING_ON_PUBLISH = True
 SCHEMA = {
     'picture': {
         'headline': {'required': False},
-        'description_text': {'required': True},
+        'description_text': {'required': False, 'textarea': True},
+        'alt_text': {'required': False},
         'byline': {'required': False},
         'sign_off': {'required': False}
     },
