@@ -60,6 +60,35 @@ PUBLISH_ASSOCIATED_ITEMS = True
 # storing published keywords in a CV
 KEYWORDS_ADD_MISSING_ON_PUBLISH = True
 
+# media required fields
+VALIDATOR_MEDIA_METADATA = {
+    "headline": {
+        "required": False,
+    },
+    "alt_text": {
+        "required": False,
+    },
+    "archive_description": {
+        "required": False,
+    },
+    "description_text": {
+        "required": False,
+        "textarea": True,
+    },
+    "copyrightholder": {
+        "required": False,
+    },
+    "byline": {
+        "required": False,
+    },
+    "usageterms": {
+        "required": False,
+    },
+    "copyrightnotice": {
+        "required": False,
+    },
+}
+
 # schema for images, video, audio
 SCHEMA = {
     'picture': {
