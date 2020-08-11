@@ -93,7 +93,7 @@ VALIDATOR_MEDIA_METADATA = {
 SCHEMA = {
     'picture': {
         'headline': {'required': False},
-        'description_text': {'required': False, 'textarea': True},
+        'description_text': {'required': False},
         'alt_text': {'required': False},
         'byline': {'required': False},
         'sign_off': {'required': False}
