@@ -56,6 +56,8 @@ module.exports = function(grunt) {
             }
         },
 
+        shortDateFormat: 'LLL',
+
         features: {
             preview: 1,
             swimlane: {columnsLimit: 4},
@@ -70,7 +72,7 @@ module.exports = function(grunt) {
         item_profile: {
             change_profile: 1
         },
-        
+
         raven: {
             dsn: process.env.SUPERDESK_RAVEN_DSN || ''
         }
