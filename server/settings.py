@@ -63,7 +63,7 @@ KEYWORDS_ADD_MISSING_ON_PUBLISH = True
 # media required fields
 VALIDATOR_MEDIA_METADATA = {
     "headline": {
-        "required": False,
+        "required": True,
     },
     "alt_text": {
         "required": False,
@@ -72,7 +72,7 @@ VALIDATOR_MEDIA_METADATA = {
         "required": False,
     },
     "description_text": {
-        "required": False,
+        "required": True,
         "textarea": True,
     },
     "copyrightholder": {
@@ -92,8 +92,8 @@ VALIDATOR_MEDIA_METADATA = {
 # schema for images, video, audio
 SCHEMA = {
     'picture': {
-        'headline': {'required': False},
-        'description_text': {'required': False},
+        'headline': {'required': True},
+        'description_text': {'required': True},
         'alt_text': {'required': False},
         'byline': {'required': False},
         'sign_off': {'required': False}
