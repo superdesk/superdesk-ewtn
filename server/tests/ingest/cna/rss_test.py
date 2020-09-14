@@ -36,6 +36,7 @@ class CNA_RSSTestCase(unittest.TestCase):
         self.assertIn('Credit: Christine Rousselle/CNA', featured['description_text'])
         self.assertEqual('Pierre At 2019 Mass For Life', featured['headline'])
         self.assertEqual('Test', featured['creditline'])
+        self.assertEqual('Test', featured['byline'])
         self.assertEqual(item['versioncreated'], featured['versioncreated'])
         self.assertEqual(item['firstcreated'], featured['firstcreated'])
         rend = featured['renditions']['baseImage']
