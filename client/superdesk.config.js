@@ -46,7 +46,9 @@ module.exports = function(grunt) {
             base: 'api/v2',
             wsDomain: process.env.PUBLISHER_WS_DOMAIN || process.env.PUBLISHER_API_DOMAIN,
             wsPath: process.env.PUBLISHER_WS_PATH || '',
-            wsPort: process.env.PUBLISHER_WS_PORT || '8080'
+            wsPort: process.env.PUBLISHER_WS_PORT || '8080',
+            hideContentRoutesInPublishPane: true,
+            hideCustomRoutesInPublishPane: true
         },
 
         langOverride: {
