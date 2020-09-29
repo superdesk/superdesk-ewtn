@@ -76,22 +76,16 @@ VALIDATOR_MEDIA_METADATA = {
         "textarea": True,
     },
     "copyrightholder": {
-        "required": False,
+        "required": True,
     },
     "byline": {
         "required": False,
     },
     "usageterms": {
-        "required": False,
+        "required": True,
     },
     "copyrightnotice": {
         "required": False,
-    },
-    "copyrightholder": {
-        "required": True,
-    },
-    "usageterms": {
-        "required": True,
     },
 }
 
