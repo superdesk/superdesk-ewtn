@@ -87,6 +87,12 @@ VALIDATOR_MEDIA_METADATA = {
     "copyrightnotice": {
         "required": False,
     },
+    "copyrightholder": {
+        "required": True,
+    },
+    "usageterms": {
+        "required": True,
+    },
 }
 
 # schema for images, video, audio
@@ -96,19 +102,25 @@ SCHEMA = {
         'description_text': {'required': True},
         'alt_text': {'required': False},
         'byline': {'required': False},
-        'sign_off': {'required': False}
+        'sign_off': {'required': False},
+        "copyrightholder": {'required': True},
+        "usageterms": {'required': True}
     },
     'video': {
         'headline': {'required': False},
         'description_text': {'required': True},
         'byline': {'required': False},
-        'sign_off': {'required': False}
+        'sign_off': {'required': False},
+        "copyrightholder": {'required': True},
+        "usageterms": {'required': True}
     },
     'graphic': {
         'headline': {'required': False},
         'description_text': {'required': True},
         'byline': {'required': False},
-        'sign_off': {'required': False}
+        'sign_off': {'required': False},
+        "copyrightholder": {'required': True},
+        "usageterms": {'required': True}
     },
 }
 
