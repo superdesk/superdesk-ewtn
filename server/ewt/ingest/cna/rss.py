@@ -66,6 +66,7 @@ class CNAFeedingService(RSSFeedingService):
                         'type': 'picture',
                         'guid': generate_tag_from_url(featured['url']),
                         'headline': media_title,
+                        'byline': media_credit or '',
                         'creditline': media_credit or '',
                         'description_text': content[0]['value'],
                         'firstcreated': item['versioncreated'],
