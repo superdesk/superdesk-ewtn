@@ -72,6 +72,7 @@ class CNAFeedingService(RSSFeedingService):
                         'firstcreated': item['versioncreated'],
                         'versioncreated': item['versioncreated'],
                         'renditions': {
+                            'original': rendition.copy(),
                             'baseImage': rendition.copy(),
                             'viewImage': rendition.copy(),
                         },
