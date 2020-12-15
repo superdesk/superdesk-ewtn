@@ -62,6 +62,11 @@ module.exports = function(grunt) {
         shortDateFormat: 'MM/DD/YYYY, h:mm a',
         shortWeekFormat: 'MM/DD/YYYY, h:mm a',
 
+        view: {
+            timeformat: 'h:mm a',
+            dateformat: 'MM/DD/YYYY'
+        },
+
         features: {
             preview: 1,
             swimlane: {columnsLimit: 4},
