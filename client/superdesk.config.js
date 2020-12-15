@@ -58,7 +58,9 @@ module.exports = function(grunt) {
             }
         },
 
-        shortDateFormat: 'LLL',
+        shortTimeFormat: 'MM/DD/YYYY, h:mm a',
+        shortDateFormat: 'MM/DD/YYYY, h:mm a',
+        shortWeekFormat: 'MM/DD/YYYY, h:mm a',
 
         features: {
             preview: 1,
