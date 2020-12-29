@@ -8,11 +8,8 @@
 # For the full copyright and license information, please see the
 # AUTHORS and LICENSE files distributed with this source code, or
 # at https://www.sourcefabric.org/superdesk/license
-
 import os
 from pathlib import Path
-
-
 def env(variable, fallback_value=None):
     env_value = os.environ.get(variable, '')
     if len(env_value) == 0:
@@ -22,14 +19,10 @@ def env(variable, fallback_value=None):
             return ''
         else:
             return env_value
-
-
 ABS_PATH = str(Path(__file__).resolve().parent)
-
 init_data = Path(ABS_PATH) / 'data'
 if init_data.exists():
     INIT_DATA_PATH = init_data
-
 RENDITIONS = {
     'picture': {
         'thumbnail': {'width': 220, 'height': 120},
@@ -41,25 +34,18 @@ RENDITIONS = {
         'viewImage': {'width': 200, 'height': 200},
     }
 }
-
 WS_HOST = env('WSHOST', '0.0.0.0')
 WS_PORT = env('WSPORT', '5100')
-
 LOG_CONFIG_FILE = env('LOG_CONFIG_FILE', 'logging_config.yml')
-
 REDIS_URL = env('REDIS_URL', 'redis://localhost:6379')
 if env('REDIS_PORT'):
     REDIS_URL = env('REDIS_PORT').replace('tcp:', 'redis:')
 BROKER_URL = env('CELERY_BROKER_URL', REDIS_URL)
-
 SECRET_KEY = env('SECRET_KEY', '')
-
 # publishing associations with the main item (images etc.)
 PUBLISH_ASSOCIATED_ITEMS = True
-
 # storing published keywords in a CV
 KEYWORDS_ADD_MISSING_ON_PUBLISH = True
-
 # media required fields
 VALIDATOR_MEDIA_METADATA = {
     "headline": {
@@ -87,8 +73,10 @@ VALIDATOR_MEDIA_METADATA = {
     "copyrightnotice": {
         "required": False,
     },
+    "photo_licenses": {
+        "required": False,
+    },
 }
-
 # schema for images, video, audio
 SCHEMA = {
     'picture': {
@@ -98,7 +86,8 @@ SCHEMA = {
         'byline': {'required': False},
         'sign_off': {'required': False},
         "copyrightholder": {'required': True},
-        "usageterms": {'required': True}
+        "usageterms": {'required': True},
+        "photo_licenses": {'required': False}
     },
     'video': {
         'headline': {'required': False},
@@ -117,8 +106,6 @@ SCHEMA = {
         "usageterms": {'required': True}
     },
 }
-
-
 # editor for images, video, audio
 EDITOR = {
     'picture': {
@@ -145,16 +132,13 @@ EDITOR = {
         'archive_description': {'displayOnMediaEditor': False}
     },
 }
-
 SCHEMA['audio'] = SCHEMA['video']
 EDITOR['audio'] = EDITOR['video']
-
 INSTALLED_APPS = (
     'ewt.ingest.cna',
 )
-
 GEONAMES_USERNAME = env('GEONAMESUSERNAME')
 GEONAMES_FEATURE_CLASSES = ['A', 'P']
-
 MACROS_MODULE = 'ewt.macros'
 NINJS_PLACE_EXTENDED = True
+

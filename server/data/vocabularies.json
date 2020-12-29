@@ -1,0 +1,19 @@
+ [
+     {
+        "_id": "photo_licenses",
+        "display_name": "Photo licenses",
+        "type": "manageable",
+        "selection_type": "single selection",
+    	"schema": {
+    	    "name": {},
+    	    "url": {},
+    	},
+        "items": [
+            {
+                "is_active": true,
+                "name": "CC BY-NC-SA 4.0",
+                "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+            }
+        ]
+    }
+]
