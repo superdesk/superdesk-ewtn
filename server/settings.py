@@ -73,7 +73,7 @@ VALIDATOR_MEDIA_METADATA = {
     "copyrightnotice": {
         "required": False,
     },
-    "photo_licenses": {
+    "photo_license": {
         "required": False,
     },
 }
@@ -87,7 +87,7 @@ SCHEMA = {
         'sign_off': {'required': False},
         "copyrightholder": {'required': True},
         "usageterms": {'required': True},
-        "photo_licenses": {'required': False}
+        "photo_license": {'required': False}
     },
     'video': {
         'headline': {'required': False},
