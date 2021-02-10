@@ -1,10 +1,12 @@
 import angular from 'angular';
 import {startApp} from 'superdesk-core/scripts/index';
-import markForUserExtension from 'superdesk-core/scripts/extensions/markForUser/dist/src/extension';
 
 setTimeout(() => {
     startApp([
-        markForUserExtension,
+        {
+            id: 'markForUser',
+            load: () => import('superdesk-core/scripts/extensions/markForUser/dist/src/extension').then((res) => res.default),
+        },
     ], {});
 });
 
