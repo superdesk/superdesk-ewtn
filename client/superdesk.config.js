@@ -83,6 +83,11 @@ module.exports = function(grunt) {
             analytics: true
         },
 
+        ui: {
+            sendEmbargo: false,
+            publishEmbargo: false,
+        },        
+
         item_profile: {
             change_profile: 1
         },
