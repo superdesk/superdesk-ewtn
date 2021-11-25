@@ -77,7 +77,8 @@ module.exports = function(grunt) {
                 toDesk: true,
                 publish: true,
                 publishAndContinue: true,
-            },            
+            },
+            elasticHighlight: true,
         },
         workspace: {
             analytics: true
@@ -86,7 +87,20 @@ module.exports = function(grunt) {
         ui: {
             sendEmbargo: false,
             publishEmbargo: false,
-        },        
+        },
+        
+        list: {
+            priority: ['priority', 'urgency'],
+            firstLine: ['wordcount', 'slugline', 'headline', 'byline',
+            { 
+                field: 'authors',
+                options: {
+                    displayField: 'username',
+                    includeRoles: ['writer', 'photographer'], },
+            },
+            'versioncreated'],
+            secondLine: ['profile', 'state', 'scheduledDateTime', 'update', 'updated', 'category', 'provider', 'expiry', 'desk']
+        },
 
         item_profile: {
             change_profile: 1
