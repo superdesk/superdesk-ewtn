@@ -7,14 +7,16 @@
 module.exports = function(grunt) {
     return {
         apps: [
+            'superdesk-planning',
             'superdesk-publisher',
             'ewtn'
         ],
         importApps: [
+            'superdesk-planning',
             'superdesk-publisher',
             '../ewtn'
         ],
-        defaultRoute: '/workspace/personal',
+        defaultRoute: '/workspace/monitoring',
         validatorMediaMetadata: {
             headline: {
                 required: true
@@ -90,16 +92,17 @@ module.exports = function(grunt) {
         },
         
         list: {
-            priority: ['priority', 'urgency'],
-            firstLine: ['wordcount', 'slugline', 'headline', 'byline',
-            { 
-                field: 'authors',
-                options: {
-                    displayField: 'username',
-                    includeRoles: ['writer', 'photographer'], },
-            },
-            'versioncreated'],
-            secondLine: ['profile', 'state', 'scheduledDateTime', 'update', 'updated', 'category', 'provider', 'expiry', 'desk']
+            priority: ['urgency'],
+            firstLine: ['wordcount', 'profile', 'desk', 'headline', 'byline', 'versioncreated'],
+            secondLine: [
+                { 
+                    field: 'authors',
+                    options: {
+                        displayField: 'username',
+                        includeRoles: ['writer', 'photographer'], 
+                    },
+                },
+            'state', 'scheduledDateTime', 'update', 'updated', 'category', 'provider', 'expiry']
         },
 
         item_profile: {
