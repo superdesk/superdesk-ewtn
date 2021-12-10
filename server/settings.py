@@ -136,6 +136,7 @@ SCHEMA['audio'] = SCHEMA['video']
 EDITOR['audio'] = EDITOR['video']
 INSTALLED_APPS = (
     'ewt.ingest.cna',
+    'planning',
 )
 GEONAMES_USERNAME = env('GEONAMESUSERNAME')
 GEONAMES_FEATURE_CLASSES = ['A', 'P']

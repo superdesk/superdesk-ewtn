@@ -8,10 +8,12 @@ module.exports = function(grunt) {
     return {
         apps: [
             'superdesk-publisher',
+            'superdesk-planning',
             'ewtn'
         ],
         importApps: [
             'superdesk-publisher',
+            'superdesk-planning',
             '../ewtn'
         ],
         defaultRoute: '/workspace/personal',
@@ -79,9 +81,12 @@ module.exports = function(grunt) {
                 publishAndContinue: true,
             },
             elasticHighlight: true,
+            planning: true,
         },
         workspace: {
-            analytics: true
+            analytics: true,
+            planning: true,
+            assignments: true,
         },
 
         ui: {
