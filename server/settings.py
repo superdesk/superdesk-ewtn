@@ -135,6 +135,7 @@ EDITOR = {
 SCHEMA['audio'] = SCHEMA['video']
 EDITOR['audio'] = EDITOR['video']
 INSTALLED_APPS = (
+    'apps.languages',
     'ewt.ingest.cna',
     'planning',
 )
