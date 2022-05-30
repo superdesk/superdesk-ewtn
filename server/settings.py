@@ -10,6 +10,8 @@
 # at https://www.sourcefabric.org/superdesk/license
 import os
 from pathlib import Path
+
+
 def env(variable, fallback_value=None):
     env_value = os.environ.get(variable, '')
     if len(env_value) == 0:
@@ -19,6 +21,8 @@ def env(variable, fallback_value=None):
             return ''
         else:
             return env_value
+
+
 ABS_PATH = str(Path(__file__).resolve().parent)
 init_data = Path(ABS_PATH) / 'data'
 if init_data.exists():
