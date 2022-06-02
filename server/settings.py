@@ -49,7 +49,7 @@ SECRET_KEY = env('SECRET_KEY', '')
 # publishing associations with the main item (images etc.)
 PUBLISH_ASSOCIATED_ITEMS = True
 # storing published keywords in a CV
-KEYWORDS_ADD_MISSING_ON_PUBLISH = True
+KEYWORDS_ADD_MISSING_ON_PUBLISH = False
 # media required fields
 VALIDATOR_MEDIA_METADATA = {
     "headline": {
