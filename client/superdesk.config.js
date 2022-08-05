@@ -82,6 +82,7 @@ module.exports = function(grunt) {
             },
             elasticHighlight: true,
             planning: true,
+            searchShortcut: true,
         },
         workspace: {
             analytics: true,
