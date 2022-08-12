@@ -76,9 +76,9 @@ module.exports = function(grunt) {
             editorHighlights: true,
             nestedItemsInOutputStage: true,
             customAuthoringTopbar: {
-                toDesk: true,
-                publish: true,
-                publishAndContinue: true,
+                toDesk: false,
+                publish: false,
+                publishAndContinue: false,
             },
             elasticHighlight: true,
             planning: true,
@@ -105,15 +105,37 @@ module.exports = function(grunt) {
                     includeRoles: ['writer', 'photographer'], },
             },
             'versioncreated'],
-            secondLine: ['profile', 'state', 'scheduledDateTime', 'update', 'updated', 'category', 'provider', 'expiry', 'desk']
+            secondLine: ['profile', 'state', 'source', 'byline', 'copyrightholder', 'usageterms', 'scheduledDateTime', 'update', 'updated', 'category', 'provider', 'expiry', 'desk']
         },
 
         item_profile: {
             change_profile: 1
         },
 
-        raven: {
-            dsn: process.env.SUPERDESK_RAVEN_DSN || ''
-        }
+        search_cvs: [], 
+        search: {
+            slugline: 1,
+            headline: 1,
+            unique_name: 1,
+            story_text: 1,
+            byline: 1,
+            keywords: 1,
+            creator: 1,
+            from_desk: 1,
+            to_desk: 1,
+            spike: 1,
+            scheduled: 1,
+            company_codes: 0,
+            ingest_provider: 1,
+            marked_desks: 1,
+            featuremedia: 1,
+        },
+
+        gridViewFields: [
+            'source',
+            'byline',
+            'copyrightholder',
+            'usageterms',
+        ],
     };
 };
