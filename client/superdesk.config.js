@@ -97,12 +97,13 @@ module.exports = function(grunt) {
         
         list: {
             priority: ['priority', 'urgency'],
-            firstLine: ['wordcount', 'slugline', 'headline', 'byline',
+            firstLine: ['wordcount', 'slugline', 'headline', 'byline', 'associatedItems',
             { 
                 field: 'authors',
                 options: {
                     displayField: 'username',
-                    includeRoles: ['writer', 'photographer'], },
+                    includeRoles: ['writer', 'photographer'],
+                },
             },
             'versioncreated'],
             secondLine: ['profile', 'state', 'source', 'byline', 'copyrightholder', 'usageterms', 'scheduledDateTime', 'update', 'updated', 'category', 'provider', 'expiry', 'desk']
