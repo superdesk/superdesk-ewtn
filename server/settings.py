@@ -91,7 +91,8 @@ SCHEMA = {
         'sign_off': {'required': False},
         "copyrightholder": {'required': True},
         "usageterms": {'required': True},
-        "photo_license": {'required': False}
+        "photo_license": {'required': False},
+        "abstract": {"required": False},
     },
     'video': {
         'headline': {'required': False},
@@ -117,7 +118,8 @@ EDITOR = {
         'description_text': {'order': 2, 'sdWidth': 'full', 'textarea': True},
         'byline': {'order': 3, 'sdWidth': 'full'},
         'sign_off': {'displayOnMediaEditor': False},
-        'archive_description': {'displayOnMediaEditor': False}
+        'archive_description': {'displayOnMediaEditor': False},
+        "abstract": {"order": 10, "textarea": True, 'sdWidth': 'full'},
     },
     'video': {
         'slugline': {'order': 1, 'sdWidth': 'full'},
