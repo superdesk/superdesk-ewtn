@@ -1,7 +1,9 @@
 import itertools
+import logging
 import superdesk.editor_utils as editor_utils
 
 
+logger = logging.getLogger(__name__)
 do_not_capitalize = "a an the and but for at by in to of".split()
 
 
@@ -18,6 +20,7 @@ def capitalize(item, **kwargs):
         capitalized_headline = capitalize_headline(item["headline"])
         editor_utils.replace_text(item, "headline", old_headline, capitalized_headline)
         item["headline"] = capitalized_headline
+        logger.info("Capitalized headline:\nFrom: [ %s ]\nTo:   [ %s ]", old_headline, capitalized_headline)
 
     return item
 
