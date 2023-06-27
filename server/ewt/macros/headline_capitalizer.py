@@ -45,7 +45,9 @@ def capitalize_headline(headline):
         else:
             capitalized.append(uppercase_first_letter(word))
 
-    return "".join([item for sublist in itertools.zip_longest(capitalized, splitters, fillvalue="") for item in sublist])
+    zip_result = itertools.zip_longest(capitalized, splitters, fillvalue="")
+    ordered_bits = [item for sublist in zip_result for item in sublist]
+    return "".join(ordered_bits)
 
 
 def uppercase_first_letter(word):
