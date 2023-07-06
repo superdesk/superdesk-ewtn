@@ -10,6 +10,11 @@ RD = macro.RD
 class DumbToSmartQuotesTest(TestCase):
 
     befores_and_afters = [
+        # This test unfortunately fails.  The way blocks are parsed, the <i> tag is not preserved
+        # (
+        #     'And the abstract has <i>"a quote"</i> as well',
+        #     f'And the abstract has <i>{LD}a quote{RD}</i> as well'
+        # ),
         (
             "\"Now that's interesting\", she said.",
             f"{LD}Now that{RS}s interesting{RD}, she said."

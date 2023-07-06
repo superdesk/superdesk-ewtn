@@ -21,11 +21,16 @@ def dumb_to_smart_quotes(item):
 
     for field in ["headline", "abstract"]:
         if item.get(field, None):
-            original = item[field]
-            quotes_replaced = do_replacement(original)
+            full_original = item[field]
+            abstract_content = editor_utils.Editor3Content(item, field, editor_utils.is_html(field))
+            for block in abstract_content.content_state["blocks"]:
+                original = block["text"]
+                replaced = do_replacement(original)
+                if original != replaced:
+                    editor_utils.replace_text(item, field, original, replaced, editor_utils.is_html(field))
+                    logger.info("Replaced quotes in [%s] block:\nFrom: [ %s ]\nRepl: [ %s ]", field, original, replaced)
 
-            editor_utils.replace_text(item, field, original, quotes_replaced, editor_utils.is_html(field))
-            logger.info("Replaced quotes in %s:\nFrom: [ %s ]\nRepl: [ %s ]\nTo:   [ %s ]", field, original, quotes_replaced, item[field])
+            logger.info("FINAL Replaced quotes in [%s]:\nFrom: [ %s ]\nTo:   [ %s ]", field, full_original, item[field])
 
     return item
 
@@ -58,8 +63,6 @@ def do_replacement(text):
 
 name = "dumb_to_smart_quotes"
 label = lazy_gettext("Replace simple quotes with smart quotes")
-order = 3
-shortcut = "r"
 callback = dumb_to_smart_quotes
 access_type = "frontend"
 action_type = "direct"
