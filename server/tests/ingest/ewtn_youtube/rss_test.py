@@ -43,7 +43,8 @@ class EWNTYoutube_RSSTestCase(unittest.TestCase):
         featured = item['associations']['featuremedia']
         self.assertEqual('tag:i3.ytimg.com:vi:2JELmDmKJlA:hqdefault.jpg', featured['guid'])
         # self.assertIn('Credit: Christine Rousselle/CNA', featured['description_text'])
-        self.assertEqual('THE CATHOLIC UNIVERSITY OF AMERICA: MASS OF THE HOLY SPIRIT - 2023-08-31', featured['headline'])
+        self.assertEqual('THE CATHOLIC UNIVERSITY OF AMERICA: MASS OF THE HOLY SPIRIT - 2023-08-31',
+                         featured['headline'])
         self.assertEqual('', featured['creditline'])
         self.assertEqual('', featured['byline'])
         self.assertEqual(item['versioncreated'], featured['versioncreated'])
