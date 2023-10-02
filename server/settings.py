@@ -141,6 +141,7 @@ EDITOR['audio'] = EDITOR['video']
 INSTALLED_APPS = (
     'apps.languages',
     'ewt.ingest.cna',
+    'ewt.ingest.ewtn_youtube',
     'planning',
 )
 GEONAMES_USERNAME = env('GEONAMESUSERNAME')
