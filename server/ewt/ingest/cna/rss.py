@@ -1,4 +1,3 @@
-
 import re
 import lxml.html
 import lxml.etree
@@ -7,18 +6,18 @@ from superdesk.io.feeding_services.rss import RSSFeedingService, generate_tag_fr
 
 
 NSMAP = {
-    'media': 'http://search.yahoo.com/mrss/',
+    "media": "http://search.yahoo.com/mrss/",
 }
 
 MEDIA_BLACKLIST = (
-    'Getty',
-    'Shutterstock',
+    "Getty",
+    "Shutterstock",
 )
 
 
 class CNAFeedingService(RSSFeedingService):
-    NAME = 'cna rss'
-    label = 'CNA RSS'
+    NAME = "cna rss"
+    label = "CNA RSS"
 
     def _extract_image_links(self, rss_entry):
         """NOOP, image will be associated via _create_item"""
@@ -31,50 +30,64 @@ class CNAFeedingService(RSSFeedingService):
         return xml
 
     def _get_xml_item(self, data):
-        return next((
-            xml_item for xml_item in self.tree.find('channel').findall('item')
-            if xml_item.find('guid').text == data.guid
-        ), None)
+        return next(
+            (
+                xml_item
+                for xml_item in self.tree.find("channel").findall("item")
+                if xml_item.find("guid").text == data.guid
+            ),
+            None,
+        )
 
-    def _create_item(self, data, field_aliases=None, source='source'):
+    def _create_item(self, data, field_aliases=None, source="source"):
         item = super()._create_item(data, field_aliases, source)
-        item['body_html'] = self._fix_html(data.summary_detail['value'])
-        item.pop('abstract', None)
-        media = getattr(data, 'media_content', None)
-        content = getattr(data, 'content', None)
+        item["body_html"] = self._fix_html(data.summary_detail["value"])
+        item.pop("abstract", None)
+        media = getattr(data, "media_content", None)
+        content = getattr(data, "content", None)
         xml_item = self._get_xml_item(data)
         if media and content:
             for featured in media:
                 try:
-                    media_credit = xml_item.find('media:content', NSMAP).find('media:credit', NSMAP).text
+                    media_credit = (
+                        xml_item.find("media:content", NSMAP)
+                        .find("media:credit", NSMAP)
+                        .text
+                    )
                 except AttributeError:
                     media_credit = None
-                if media_credit and any([provider in media_credit for provider in MEDIA_BLACKLIST]):
+                if media_credit and any(
+                    [provider in media_credit for provider in MEDIA_BLACKLIST]
+                ):
                     continue
                 try:
-                    media_title = xml_item.find('media:content', NSMAP).find('media:title', NSMAP).text
+                    media_title = (
+                        xml_item.find("media:content", NSMAP)
+                        .find("media:title", NSMAP)
+                        .text
+                    )
                 except AttributeError:
-                    media_title = ''
+                    media_title = ""
                 rendition = {
-                    'href': featured['url'],
-                    'width': int(featured['width']),
-                    'height': int(featured['height']),
-                    'mimetype': featured['type'],
+                    "href": featured["url"],
+                    "width": int(featured["width"]),
+                    "height": int(featured["height"]),
+                    "mimetype": featured["type"],
                 }
-                item['associations'] = {
-                    'featuremedia': {
-                        'type': 'picture',
-                        'guid': generate_tag_from_url(featured['url']),
-                        'headline': media_title,
-                        'byline': media_credit or '',
-                        'creditline': media_credit or '',
-                        'description_text': content[0]['value'],
-                        'firstcreated': item['versioncreated'],
-                        'versioncreated': item['versioncreated'],
-                        'renditions': {
-                            'original': rendition.copy(),
-                            'baseImage': rendition.copy(),
-                            'viewImage': rendition.copy(),
+                item["associations"] = {
+                    "featuremedia": {
+                        "type": "picture",
+                        "guid": generate_tag_from_url(featured["url"]),
+                        "headline": media_title,
+                        "byline": media_credit or "",
+                        "creditline": media_credit or "",
+                        "description_text": content[0]["value"],
+                        "firstcreated": item["versioncreated"],
+                        "versioncreated": item["versioncreated"],
+                        "renditions": {
+                            "original": rendition.copy(),
+                            "baseImage": rendition.copy(),
+                            "viewImage": rendition.copy(),
                         },
                     },
                 }
@@ -82,12 +95,10 @@ class CNAFeedingService(RSSFeedingService):
         return item
 
     def _fix_text(self, text):
-        text = text \
-            .replace('--', '\u2014') \
-            .replace('<p><br />', '<p>')
-        text = re.sub(r'([\'"])([,.])', r'\2\1', text)  # put ., before closing quote
-        text = re.sub(r"'(.+?)'", '\u2018\\1\u2019', text)  # single quotes to smart
-        text = re.sub(r'"(.+?)"', '\u201C\\1\u201D', text)  # double quotes to smart
+        text = text.replace("--", "\u2014").replace("<p><br />", "<p>")
+        text = re.sub(r'([\'"])([,.])', r"\2\1", text)  # put ., before closing quote
+        text = re.sub(r"'(.+?)'", "\u2018\\1\u2019", text)  # single quotes to smart
+        text = re.sub(r'"(.+?)"', "\u201C\\1\u201D", text)  # double quotes to smart
         return text
 
     def _fix_html(self, value):

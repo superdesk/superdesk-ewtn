@@ -14,50 +14,64 @@ logger = logging.getLogger(__name__)
 
 def dumb_to_smart_quotes(item):
     """
-        Takes an item and returns it with dumb quotes, single and double,
-        replaced by smart quotes in the headline and abstract
-        Accounts for the possibility of HTML tags within the string.
+    Takes an item and returns it with dumb quotes, single and double,
+    replaced by smart quotes in the headline and abstract
+    Accounts for the possibility of HTML tags within the string.
     """
 
     for field in ["headline", "abstract"]:
         if item.get(field, None):
             full_original = item[field]
-            abstract_content = editor_utils.Editor3Content(item, field, editor_utils.is_html(field))
+            abstract_content = editor_utils.Editor3Content(
+                item, field, editor_utils.is_html(field)
+            )
             for block in abstract_content.content_state["blocks"]:
                 original = block["text"]
                 replaced = do_replacement(original)
                 if original != replaced:
-                    editor_utils.replace_text(item, field, original, replaced, editor_utils.is_html(field))
-                    logger.info("Replaced quotes in [%s] block:\nFrom: [ %s ]\nRepl: [ %s ]", field, original, replaced)
+                    editor_utils.replace_text(
+                        item, field, original, replaced, editor_utils.is_html(field)
+                    )
+                    logger.info(
+                        "Replaced quotes in [%s] block:\nFrom: [ %s ]\nRepl: [ %s ]",
+                        field,
+                        original,
+                        replaced,
+                    )
 
-            logger.info("FINAL Replaced quotes in [%s]:\nFrom: [ %s ]\nTo:   [ %s ]", field, full_original, item[field])
+            logger.info(
+                "FINAL Replaced quotes in [%s]:\nFrom: [ %s ]\nTo:   [ %s ]",
+                field,
+                full_original,
+                item[field],
+            )
 
     return item
 
 
 def do_replacement(text):
     """
-        Takes a string and returns it with dumb quotes, single and double,
-        replaced by smart quotes. Accounts for the possibility of HTML tags
-        within the string.
+    Takes a string and returns it with dumb quotes, single and double,
+    replaced by smart quotes. Accounts for the possibility of HTML tags
+    within the string.
 
-        Adapted from: https://gist.github.com/davidtheclark/5521432
+    Adapted from: https://gist.github.com/davidtheclark/5521432
     """
 
     # Find dumb double quotes coming directly after letters or punctuation,
     # and replace them with right double quotes.
-    text = re.sub(r'([a-zA-Z0-9.,?!;:\'\"’])"', r'\1{}'.format(RD), text)
+    text = re.sub(r'([a-zA-Z0-9.,?!;:\'\"’])"', r"\1{}".format(RD), text)
     # Find any remaining dumb double quotes and replace them with
     # left double quotes.
     text = text.replace('"', LD)
     # Reverse: Find any SMART quotes that have been (mistakenly) placed around HTML
     # attributes (following =) and replace them with dumb quotes.
-    text = re.sub(r'={}(.*?){}'.format(LD, RD), r'="\1"', text)
+    text = re.sub(r"={}(.*?){}".format(LD, RD), r'="\1"', text)
 
     # Follow the same process with dumb/smart single quotes
-    text = re.sub(r"([a-zA-Z0-9.,?!;:\"\'”])'", r'\1{}'.format(RS), text)
+    text = re.sub(r"([a-zA-Z0-9.,?!;:\"\'”])'", r"\1{}".format(RS), text)
     text = text.replace("'", LS)
-    text = re.sub(r'={}(.*?){}'.format(LS, RS), r"='\1'", text)
+    text = re.sub(r"={}(.*?){}".format(LS, RS), r"='\1'", text)
     return text
 
 
