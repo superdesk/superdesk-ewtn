@@ -41,10 +41,15 @@ class CNAFeedingService(RSSFeedingService):
 
     def _create_item(self, data, field_aliases=None, source="source"):
         item = super()._create_item(data, field_aliases, source)
-        item["body_html"] = self._fix_html(data.summary_detail["value"])
+        content = getattr(data, "content", None)
+        if content and len(content) > 0:
+            body_html = content[0]["value"]
+        else:
+            # Fallback to summary if content:encoded is not available
+            body_html = data.summary_detail["value"]
+        item["body_html"] = self._fix_html(body_html)
         item.pop("abstract", None)
         media = getattr(data, "media_content", None)
-        content = getattr(data, "content", None)
         xml_item = self._get_xml_item(data)
         if media and content:
             for featured in media:
