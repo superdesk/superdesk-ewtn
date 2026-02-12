@@ -35,7 +35,8 @@ class CNA_RSSTestCase(unittest.TestCase):
             "tag:res.cloudinary.com:ewtn:image:upload:v1770667944:pierre_at_2019_mass_for_life.jpeg",
             featured["guid"],
         )
-        self.assertIn("pandemic", featured["description_text"])
+        self.assertIn("Archbishop Christophe Pierre", featured["description_text"])
+        self.assertIn("Credit: Christine Rousselle/CNA", featured["description_text"])
         self.assertEqual("Pierre At 2019 Mass For Life", featured["headline"])
         self.assertEqual("Test", featured["creditline"])
         self.assertEqual("Test", featured["byline"])
