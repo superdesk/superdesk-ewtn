@@ -41,12 +41,17 @@ class CNAFeedingService(RSSFeedingService):
 
     def _create_item(self, data, field_aliases=None, source="source"):
         item = super()._create_item(data, field_aliases, source)
-        item["body_html"] = self._fix_html(data.summary_detail["value"])
+        content = getattr(data, "content", None)
+        if content and len(content) > 0:
+            body_html = content[0].get("value", "")
+        else:
+            # Fallback to summary if content:encoded is not available
+            body_html = data.summary_detail.get("value", "")
+        item["body_html"] = self._fix_html(body_html)
         item.pop("abstract", None)
         media = getattr(data, "media_content", None)
-        content = getattr(data, "content", None)
         xml_item = self._get_xml_item(data)
-        if media and content:
+        if media and xml_item is not None:
             for featured in media:
                 try:
                     media_credit = (
@@ -68,12 +73,24 @@ class CNAFeedingService(RSSFeedingService):
                     )
                 except AttributeError:
                     media_title = ""
-                rendition = {
-                    "href": featured["url"],
-                    "width": int(featured["width"]),
-                    "height": int(featured["height"]),
-                    "mimetype": featured["type"],
-                }
+                try:
+                    media_description = (
+                        xml_item.find("media:content", NSMAP)
+                        .find("media:description", NSMAP)
+                        .text
+                    )
+                except AttributeError:
+                    media_description = ""
+                try:
+                    rendition = {
+                        "href": featured["url"],
+                        "width": int(featured["width"]),
+                        "height": int(featured["height"]),
+                        "mimetype": featured["type"],
+                    }
+                except (KeyError, TypeError, ValueError):
+                    # Skip media items with missing or invalid dimensions
+                    continue
                 item["associations"] = {
                     "featuremedia": {
                         "type": "picture",
@@ -81,7 +98,7 @@ class CNAFeedingService(RSSFeedingService):
                         "headline": media_title,
                         "byline": media_credit or "",
                         "creditline": media_credit or "",
-                        "description_text": content[0]["value"],
+                        "description_text": media_description,
                         "firstcreated": item["versioncreated"],
                         "versioncreated": item["versioncreated"],
                         "renditions": {
