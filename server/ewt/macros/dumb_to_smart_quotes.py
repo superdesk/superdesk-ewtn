@@ -1,4 +1,4 @@
-from flask_babel import lazy_gettext
+from quart_babel import lazy_gettext
 import re
 import logging
 import superdesk.editor_utils as editor_utils

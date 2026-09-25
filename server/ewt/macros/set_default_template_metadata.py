@@ -1,5 +1,5 @@
 import logging
-from flask import current_app as app
+from superdesk.core import get_app_config
 from superdesk import get_resource_service
 
 logger = logging.getLogger(__name__)
@@ -49,8 +49,8 @@ def get_default_content_template(item, **kwargs):
 
 def set_default_template_metadata(item, **kwargs):
 
-    fields_to_exclude = app.config.get("DEFAULT_TEMPLATE_METADATA_MACRO_EXCLUDE", [])
-    fields_to_override = app.config.get("DEFAULT_TEMPLATE_METADATA_MACRO_OVERRIDE", [])
+    fields_to_exclude = get_app_config("DEFAULT_TEMPLATE_METADATA_MACRO_EXCLUDE", [])
+    fields_to_override = get_app_config("DEFAULT_TEMPLATE_METADATA_MACRO_OVERRIDE", [])
 
     """Replace some metadata from default content template"""
 

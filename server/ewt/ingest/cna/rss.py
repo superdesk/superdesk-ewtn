@@ -23,9 +23,9 @@ class CNAFeedingService(RSSFeedingService):
         """NOOP, image will be associated via _create_item"""
         return []
 
-    def _fetch_data(self):
+    async def _fetch_data(self):
         """Store XML for later parsing."""
-        xml = super()._fetch_data()
+        xml = await super()._fetch_data()
         self.tree = lxml.etree.fromstring(xml)
         return xml
 

@@ -11,6 +11,8 @@
 import os
 from pathlib import Path
 
+from superdesk.default_settings import MODULES
+
 
 def env(variable, fallback_value=None):
     env_value = os.environ.get(variable, "")
@@ -140,10 +142,13 @@ SCHEMA["audio"] = SCHEMA["video"]
 EDITOR["audio"] = EDITOR["video"]
 INSTALLED_APPS = (
     "apps.languages",
+    "ewt.commands",
     "ewt.ingest.cna",
     "ewt.ingest.ewtn_youtube",
     "planning",
 )
+
+MODULES.append("planning")
 GEONAMES_USERNAME = env("GEONAMESUSERNAME")
 GEONAMES_FEATURE_CLASSES = ["A", "P"]
 MACROS_MODULE = "ewt.macros"
