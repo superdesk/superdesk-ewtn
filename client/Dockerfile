@@ -1,10 +1,16 @@
 # BUILD
-FROM node:14 AS build
+FROM node:22 AS build
+
+ARG SUPERDESK_URL
+ARG SUPERDESK_WS_URL
+
+ENV SUPERDESK_URL=${SUPERDESK_URL}
+ENV SUPERDESK_WS_URL=${SUPERDESK_WS_URL}
 
 # install client
 WORKDIR /tmp/client
 COPY . .
-RUN npm install --no-audit --unsafe-perm
+RUN npm install
 RUN npm run build
 
 # DEPLOY
