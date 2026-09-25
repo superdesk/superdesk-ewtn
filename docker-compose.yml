@@ -1,18 +1,17 @@
-version: "3.2"
 services:
 
   mongodb:
-    image: mongo:4
+    image: mongo:6
     networks:
       - superdesk
 
   redis:
-    image: redis:3
+    image: redis:8
     networks:
       - superdesk
 
   elastic:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.29
     environment:
       - discovery.type=single-node
     networks:
@@ -46,9 +45,13 @@ services:
       - superdesk
 
   superdesk-client:
-    build: ./client
+    build:
+      context: ./client
+      args:
+        # If not hosting on localhost, change these lines
+        - SUPERDESK_URL=http://localhost:8080/api
+        - SUPERDESK_WS_URL=ws://localhost:8080/ws
     environment:
-      # If not hosting on localhost, change these lines
       - SUPERDESK_URL=http://localhost:8080/api
       - SUPERDESK_WS_URL=ws://localhost:8080/ws
       - IFRAMELY_KEY
