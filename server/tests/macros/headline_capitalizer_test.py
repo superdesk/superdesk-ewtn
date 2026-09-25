@@ -93,4 +93,4 @@ class HeadlineCapitalizerTest(unittest.TestCase):
         self.assertEqual("We're", macro.uppercase_first_letter("we're"))
         self.assertEqual('"Who"', macro.uppercase_first_letter('"who"'))
         self.assertEqual("\u2018Who", macro.uppercase_first_letter("\u2018who"))
-        self.assertEqual("\u201CWho", macro.uppercase_first_letter("\u201Cwho"))
+        self.assertEqual("\u201cWho", macro.uppercase_first_letter("\u201cwho"))

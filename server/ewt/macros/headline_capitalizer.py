@@ -63,9 +63,9 @@ def uppercase_first_letter(word):
         non-quotation-mark character to capitalize.
 
         \u2018 = left single quote
-        \u201C = left double quote
+        \u201c = left double quote
         """
-        if word[i] not in ['"', "'", "\u2018", "\u201C"]:
+        if word[i] not in ['"', "'", "\u2018", "\u201c"]:
             return word[0:i] + word[i].capitalize() + word[i + 1 :]
     return word
 

@@ -5,8 +5,8 @@ import superdesk.editor_utils as editor_utils
 
 LS = "\u2018"  # left single quote
 RS = "\u2019"  # right single quote
-LD = "\u201C"  # left double quote
-RD = "\u201D"  # right double quote
+LD = "\u201c"  # left double quote
+RD = "\u201d"  # right double quote
 
 p = re.compile("(?i)(?<=[.?!])\\S+(?=[a-z])")
 logger = logging.getLogger(__name__)

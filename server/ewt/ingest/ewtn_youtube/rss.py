@@ -92,7 +92,7 @@ class EWTNYoutubeFeedingService(RSSFeedingService):
         text = text.replace("--", "\u2014").replace("<p><br />", "<p>")
         text = re.sub(r'([\'"])([,.])', r"\2\1", text)  # put ., before closing quote
         text = re.sub(r"'(.+?)'", "\u2018\\1\u2019", text)  # single quotes to smart
-        text = re.sub(r'"(.+?)"', "\u201C\\1\u201D", text)  # double quotes to smart
+        text = re.sub(r'"(.+?)"', "\u201c\\1\u201d", text)  # double quotes to smart
         return text
 
     def _fix_html(self, value):
