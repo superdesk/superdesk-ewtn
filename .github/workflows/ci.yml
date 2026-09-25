@@ -7,21 +7,23 @@ jobs:
   server:
     strategy:
       matrix:
-        python-version: ['3.10']
-    uses: superdesk/superdesk/.github/workflows/server.yml@develop
+        python-version: ['3.12']
+    uses: superdesk/superdesk/.github/workflows/server.yml@v3.5
     with:
       python-version: ${{ matrix.python-version }}
 
   pytest:
     strategy:
       matrix:
-        python-version: ['3.10']
-    uses: superdesk/superdesk/.github/workflows/pytest.yml@develop
+        python-version: ['3.12']
+    uses: superdesk/superdesk/.github/workflows/pytest.yml@v3.5
     with:
       python-version:  ${{ matrix.python-version }}
 
   client:
     strategy:
       matrix:
-        node-version: ['14', '22']
-    uses: superdesk/superdesk/.github/workflows/client.yml@develop
+        node-version: ['22']
+    uses: superdesk/superdesk/.github/workflows/client.yml@v3.5
+    with:
+      node-version: ${{ matrix.node-version }}
