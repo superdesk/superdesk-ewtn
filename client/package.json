@@ -8,7 +8,7 @@
         "superdesk-publisher": "github:superdesk/superdesk-publisher#release/2.10"
     },
     "devDependencies": {
-        "@superdesk/build-tools": "^1.0.19"
+        "@superdesk/build-tools": "^1.2.0"
     },
     "scripts": {
         "build": "npx @superdesk/build-tools build-root-repo ./"
