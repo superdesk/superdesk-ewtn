@@ -170,7 +170,7 @@ mongolock @ git+https://github.com/superdesk/mongolock.git@v1
     # via superdesk-core
 oauth2client==4.1.3
     # via flask-oidc-ex
-oauthlib==3.3.0
+oauthlib==4.0.0
     # via requests-oauthlib
 orderly-set==5.4.1
     # via deepdiff
